@@ -5,6 +5,6 @@ Distributed XSS fuzz on hadoop using Nutch and Solr
 
 Requires
 
-Nutch 1.7 \n
-Solr 4.10.1 \n
-Hadoop 1.2 \n
+<p> Nutch 1.7
+<p> Solr 4.10.1
+<p> Hadoop 1.2

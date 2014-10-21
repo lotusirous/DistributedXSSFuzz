@@ -19,3 +19,7 @@ Setup Solr:
 2. Extract Solr: tar zxvf solr
 3. Go to example solr: cd solr/example/..
 
+Running on Hadoop
+------------------
+1. Copy project to all nodes.
+2. Export PYTHONPATH. Example: `export PYTHONPATH=/home/haduser/myenv/WebFuzz:/home/haduser/myenv/WebFuzz/payload_dir`

@@ -1,12 +1,23 @@
-from payload_parser import GetPayload
 from random import randint
 from urllib import urlencode
 from urllib import quote_plus
 from urllib2 import unquote
-from urlparse import urlunparse, urlparse, parse_qs
+from urlparse import urlunparse, parse_qs
+
+import os
+import sys
+
+cwdir = os.path.dirname(__file__)
+sys.path.append(cwdir)
+sys.path.append(os.path.join(cwdir, "payload_dir"))
+
 import requests
+
 from lxml import html
-from Vulnerability import Vulnerability
+
+# Need to import when running on distributed
+# GetPayload (2 files)
+from payload_parser import GetPayload
 
 
 class BaseFuzz:
@@ -36,9 +47,9 @@ class BaseFuzz:
         """Encode payload for by pass"""
         list_to_encode_copy = list(list_to_encode)
         list_encode = [quote_plus(x) for x in list_to_encode_copy]
-        ret_list = list_to_encode_copy + list_encode
+        # ret_list = list_to_encode_copy + list_encode
 
-        return ret_list
+        return list_encode
 
     def replace_string(self, payload_list, str_to_replace, replace_with):
         """ use for replace " with ' or vice versa """
@@ -111,26 +122,28 @@ class XSSFuzz(BaseFuzz):
         self.payload_list = full_list
 
     def fuzz(self):
+        """
+            Return tuple (type Vulnerability, url with payload)
+        """
         vul_list = []
         for url in self.gen_url_payload(self.query_param, self.payload_list):
-            # print '>> Fuzz url: ', url
             ret_text = self.url_response(url)
             matching_string = 'alert(' + str(self.random_int) + ')'
             if self.find_string(ret_text, matching_string):
-                # print '....OK'
-                myvul = Vulnerability('xss', url)
+                myvul = ('xss', url)
                 vul_list.append(myvul)
 
         return vul_list
 
 
-class MainFuzz(object):
+class MainFuzz:
     """Main class"""
     def __init__(self):
         self.xss = XSSFuzz()
         self.xss._make_xss_payloads()
 
     def fuzz(self, parsed_url, query_param):
+
         self.xss.set_target(parsed_url, query_param)
         vul_list = self.xss.fuzz()
 
@@ -138,9 +151,9 @@ class MainFuzz(object):
 
 
 # def test():
-#     myurl = 'http://www.stromsparen-blog.ch/?s=Suche'
+#     testurl = 'http://www.stromsparen-blog.ch/?s=Suche'
 
-#     url_parsed = urlparse(myurl)
+#     url_parsed = urlparse(testurl)
 #     query_dict = parse_qs(url_parsed.query)
 
 #     mainfuzz = MainFuzz()
@@ -154,8 +167,8 @@ class MainFuzz(object):
 #     print '\n [+] Result is: '
 #     print type(full_vul_list)
 #     for vul in full_vul_list:
-#         print 'type', vul.vul_type, 'url: ', vul.vul_url
+#         print 'type', vul[0], 'url: ', vul[1]
 
 
-if __name__ == '__main__':
-    test()
+# if __name__ == '__main__':
+#     test()

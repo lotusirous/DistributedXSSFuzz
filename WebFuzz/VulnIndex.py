@@ -1,36 +1,9 @@
 import pysolr
-from urlparse import urlparse
+from time import ctime
 
 
-summary_url = 'http://localhost:8983/solr/vul_summary'
-detail_url = 'http://localhost:8983/solr/vul_detail'
-
-# from Vulnerability import Vulnerability
-# from random import choice
-# from random import randint
-# from string import letters
-
-# def make_vul_list():
-#     list_vuln = []
-#     for i in range(1, 10):
-#         if i == randint(1, 10):
-#             myvul = Vulnerability('xss', make_domain() + '<script>' + choice(letters))
-#         else:
-#             myvul = Vulnerability('path_traversal', make_domain() + '<script>' + choice(letters))
-
-#         list_vuln.append(myvul)
-#     return list_vuln
-
-
-# def make_domain():
-#     name = "http://www."
-#     domain = ""
-#     for i in range(1, 5):
-#         domain += choice(letters)
-
-#     suff_fix = [".com", ".org", ".net", ".edu.vn"]
-#     ret = name + domain + choice(suff_fix)
-#     return ret.lower()
+summary_url = 'http://master:8983/solr/vul_summary'
+detail_url = 'http://master:8983/solr/vul_detail'
 
 
 class IndexData(object):
@@ -47,11 +20,11 @@ class IndexData(object):
         self.id_dom_detail = self.__reverse_domain(self.domain)
 
     def __reverse_domain(self, domain_name):
-        """ Reverse for search faster
+        """
+        Reverse for search faster
         ex: www.google.com -> com.google.www
         """
-        domain = urlparse(domain_name).netloc
-        tmp = domain.split('.')[::-1]
+        tmp = domain_name.split('.')[::-1]
         reversed_domain = ""
         for e in tmp:
             reversed_domain += e + '.'
@@ -68,15 +41,16 @@ class IndexData(object):
 
             up_data = {}
             up_data['id'] = base_id
-            up_data['vuln_type'] = vuln.vul_type
-            up_data['vuln_url'] = vuln.vul_url
+            up_data['vuln_type'] = vuln[0]
+            up_data['vuln_url'] = vuln[1]
 
             final_list.append(up_data)
             id_c += 1
 
         try:
-            print '\n [+] Add data to Solr detail....'
+            # print '\n [+] Add data to Solr detail....'
             con_detail.add(final_list)
+            con_detail.optimize()
         except Exception, e:
             print '\n [x] Failure to add data to Solr Detail: \n %s ' % e
 
@@ -85,25 +59,27 @@ class IndexData(object):
         xss_num = 0
         path_num = 0
         for vul_num in self.vuln_list:
-            if vul_num.vul_type == 'xss':
+            if vul_num[0] == 'xss':
                 xss_num += 1
-            if vul_num.vul_type == 'path_traversal':
+            if vul_num[0] == 'path_traversal':
                 path_num += 1
 
         try:
-            print '\n [+] Add data to Solr Summary....'
+            # print '\n [+] Add data to Solr Summary....'
             # pysolr using list for add data
             upload_data = []
             data = {}
 
             data['id'] = self.id_dom_sum
             data['name'] = self.domain
+            data['time_index'] = ctime()
             data['xss_num'] = xss_num
             data['path_num'] = path_num
             # add data
             upload_data.append(data)
 
             con_sum.add(upload_data)
+            con_sum.optimize()
 
         except Exception, e:
             print '\n [x] Failure to add data to Solr Server \n %s' % e
@@ -112,9 +88,3 @@ class IndexData(object):
         # print '[+] Indexing', self.domain
         self._add_detail()
         self._add_summary()
-
-# if __name__ == '__main__':
-#     domain = make_domain()
-#     vuln_list = make_vul_list()
-#     indexdata = IndexData(domain, vuln_list)
-#     indexdata.add_data()

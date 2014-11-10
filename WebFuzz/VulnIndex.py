@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import pysolr
 from time import ctime
 
@@ -61,7 +62,7 @@ class IndexData(object):
         for vul_num in self.vuln_list:
             if vul_num[0] == 'xss':
                 xss_num += 1
-            if vul_num[0] == 'path_traversal':
+            if vul_num[0] == 'trav':
                 path_num += 1
 
         try:

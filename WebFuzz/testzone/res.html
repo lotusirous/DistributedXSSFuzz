@@ -1,0 +1,163 @@
+
+
+
+
+<HTML>
+<head>
+<script type="text/javascript" src="jquery-1.2.1.pack.js"></script>
+<script type="text/javascript">
+    function lookup(inputString) {
+        if(inputString.length == 0) {
+            // Hide the suggestion box.
+            $('#suggestions').hide();
+        } else {
+            $.post("rpc.php", {queryString: ""+inputString+""}, function(data){
+                if(data.length >0) {
+                    $('#suggestions').show();
+                    $('#autoSuggestionsList').html(data);
+                }
+            });
+        }
+    } // lookup
+
+    function fill(thisValue) {
+        $('#inputString').val(thisValue);
+        setTimeout("$('#suggestions').hide();", 200);
+    }
+</script>
+
+<style>
+ input {
+    margin: 20;
+    font: .9em Verdana, 'Lucida Grande', Geneva, Lucida, sans-serif;
+    }
+</style>
+
+
+
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="verify-v1" content="NA0RT6OSUO+TXdPrdcJsXczy2va8THAO3woXV0Sq4KQ=" />
+<link rel="stylesheet" type="text/css" href="styles.css">
+<title>BỘ MÔN QUẢN LÝ MÔI TRƯỜNG - Khoa Môi trường & Tài nguyên - ĐH Nông Lâm Tp.HCM </title>
+</head>
+<body background="images/bg2.gif" topmargin="2" leftmargin="2">
+<div align="left">
+  <table border="2" style="border-collapse: collapse" width="100%" id="table1" height="105" bordercolorlight="#FFFFCC" bordercolordark="#C0C0C0" bgcolor="#FFFFFF">
+    <tr>
+      <td valign="top">
+      <table border="1" style="border-collapse: collapse" width="100%" id="table2" bordercolordark="#800080" cellpadding="0" bordercolorlight="#800080" height="169">
+        <tr>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td height="24" bgcolor="#4ba52b">
+      <ul class="nlu-hmenu">
+<li><a  href="http://www.hcmuaf.edu.vn/"> ĐH Nông Lâm</a> </li>
+<li><a  href="/"> Trang chính </a> </li>
+<li><a href="/env-00-1/so_do_trang.html"> Sơ đồ trang</a> </li>
+<li><a href="http://pdt.hcmuaf.edu.vn"> Phòng Đào Tạo</a>
+ </li>
+<li><a href="http://aic.hcmuaf.edu.vn"> TTTH</a> </li>
+<li><a href="http://em.hcmuaf.edu.vn"> Khoa MT&TN</a> </li>
+<li><a href="http://env.hcmuaf.edu.vn/?lng=en"> English</a> </li>
+</li>
+</ul></div></td>
+        </tr>
+        <tr>
+          <td height="93" valign="top">
+      <!----------------table chinh khoi giua---------------->
+          <table border="0" style="border-collapse: collapse" width="100%" id="table3" bordercolorlight="#008000" cellspacing="4" cellpadding="0" bordercolordark="#008000" height="95">
+            <tr>
+              <td width="200" valign="top" bgcolor="#4ba52b">
+          <table border="1" style="border-collapse: collapse" width="100%" id="table2" height="77">
+        <tr>
+            <td height="22" valign="top">
+
+
+
+
+<script type="text/javascript" language="JavaScript1.2" src="menu_dhml/stmenu.js"></script>
+<script type="text/javascript" language="JavaScript1.2">
+<!--
+stm_bm(["menu1799",730,"","menu_dhml/blank.gif",0,"","",0,0,100,0,1000,1,0,0,"","",0,0,1,2,"default","hand",""],this);
+stm_bp("p0",[1,4,0,0,0,2,10,7,100,"",-2,"",-2,50,0,0,"#999999","transparent","menu_dhml/line.gif",3,0,0,"#000000","menu_dhml/up.gif",23,160,0,"transparent","",3,"",-1,-1,0,"transparent","menu_dhml/rightline.gif",3,"menu_dhml/down.gif",22,160,0,"menu_dhml/transparent","",3,"",-1,-1,0,"transparent","menu_dhml/leftline.gif",3,"menu_dhml/leftup.gif","menu_dhml/rightup.gif","menu_dhml/rightdown.gif","menu_dhml/leftdown.gif"]);
+/*
+*/
+stm_em();
+//-->
+</script>
+
+
+
+            </td>
+        </tr>
+
+        <tr>
+            <td height="22" valign="top" class="f12nenxam">Th&#7889;ng k&#234;</td>
+        </tr>
+        <tr>
+            <td valign="top">
+                        </td>
+        </tr>
+        </table>
+<!----weblink------>
+        <table border="1" style="border-collapse: collapse" width="100%" id="table2" height="77">
+          <tr>
+        <td height="22" valign="top" class="f12nenxam">Trang li&#234;n k&#7871;t</td>
+      </tr>
+      <tr>
+        <td valign="top">
+
+
+
+
+<br> <table border="0" cellpadding="3" cellspacing="3" style="border-collapse: collapse" bordercolor="#FFFFFF"  id="AutoNumber1" height="41">
+       </td>
+  </tr>
+</table>
+
+        </td>
+     </tr>
+    </table>
+      </td>
+          <td valign="top">
+          <!---noi dung---->
+          <table border="1" style="border-collapse: collapse" width="100%" id="table1" height="237">
+      <tr>
+        <td height="22" valign="top" class="f12nenxam">N&#7897;i dung</td>
+      </tr>
+        <tr>
+        <td valign="top">
+
+
+
+
+
+
+
+
+        </td>
+  </tr>
+</table>
+
+  </td>
+ </tr>
+ </table>
+      </td>
+</tr>
+    <tr>
+          <td valign="top"><p class=f12nenxam> Bộ môn Quản lý Môi trường - Khoa Môi trường & Tài Nguyên - ĐH Nông Lâm Tp.HCM - Khu phố 6, P. Linh Trung, Q. Thủ Đức, Tp.HCM: Điện thoại (Văn phòng): 08 37220723 Website:http://env.hcmuaf.edu.vn</p>
+<center>      <p class="f8vn">Thi&#7871;t k&#7871;: <a class="f8vn" href="http://ns.hcmuaf.edu.vn" target=new>Qu&#7843;n tr&#7883; m&#7841;ng</a><a class="f8vn" href="http://ts.hcmunre.edu.vn">-</a> <a class="f8vn" href="http://ns.hcmuaf.edu.vn">&#272;HNL 200</a><a class="f8vn" href="http://www.hcmunre.edu.vn">7</a><a class="f8vn" href="http://ns.hcmuaf.edu.vn">-2011</a></a></p>     </td>
+        </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+</body>
+
+</html>

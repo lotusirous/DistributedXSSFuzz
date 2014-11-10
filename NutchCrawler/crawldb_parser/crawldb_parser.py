@@ -19,7 +19,8 @@ NUTCH_HOME = config_parser.get('directories', 'NUTCH_HOME')
 NUTCH_RUNTIME_DEPLOY = os.path.join(NUTCH_HOME, 'runtime', 'deploy')
 from hadoop_connection import HadoopConnection
 
-filename = myproject_base + '../WebFuzz/url_to_fuzz.txt'
+filelocation = os.path.join(myproject_base, "../WebFuzz")
+filename = filelocation + '/url_to_fuzz.txt'
 
 
 class CrawlDBParser(object):

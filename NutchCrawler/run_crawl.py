@@ -18,13 +18,13 @@ def main():
     if not connect_hadoop.checkConnection():
         print "[x] Connections error !!!"
     else:
-        try:
-            nutch_control.crawl()
-            nutch_control.dump_crawldb()
-            crawldb_parse.get_db_from_hdfs()
-            crawldb_parse.make_urlfuzz_file()
-        except:
-            print '\n [x] Error on main file'
+        # try:
+            # nutch_control.crawl()
+            # nutch_control.dump_crawldb()
+        crawldb_parse.get_db_from_hdfs()
+        crawldb_parse.make_urlfuzz_file()
+        # except:
+        #     print '\n [x] Error on main file'
 
 
 if __name__ == '__main__':

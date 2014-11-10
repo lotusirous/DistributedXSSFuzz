@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys
 import os
 cwdir = os.path.dirname(__file__)
@@ -19,6 +20,13 @@ class GetPayload(object):
 
         return xss_string_list
 
+    def get_trav_string(self):
+        trav_string_elt = self.tree.findall('trav_payload/trav_string')
+        trav_string_list = [trav_string.text for trav_string in trav_string_elt]
+        return trav_string_list
+
 if __name__ == '__main__':
     pa = GetPayload()
-    print pa.get_xss_string()
+    # print pa.get_xss_string()
+    # for raw in  pa.get_trav_string():
+    #     print raw

